@@ -2,6 +2,7 @@
   name: multiplicationColumnTwo
   label: tafel van 2
   animation: line
+  type: practice
   subLevels:
   -
     range:
@@ -15,6 +16,7 @@
   name: multiplicationColumnThree
   label: tafel van 3
   animation: line
+  type: practice
   subLevels:
   -
     range:
@@ -28,6 +30,7 @@
   name: multiplicationColumnFour
   label: tafel van 4
   animation: line
+  type: practice
   subLevels:
   -
     range:
@@ -41,6 +44,7 @@
   name: multiplicationColumnFive
   label: tafel van 5
   animation: line
+  type: practice
   subLevels:
   -
     range:
@@ -54,6 +58,7 @@
   name: multiplicationColumnTen
   label: tafel van 10
   animation: line
+  type: practice
   subLevels:
   -
     range:
@@ -65,7 +70,7 @@
         values: 10
 -
   name: multiplicationColumnFiveTenTest
-  label: toets over tafels van 5 en 10
+  label: tafels van 5 en 10
   animation: line
   type: test
   dependencies: multiplicationColumnFive,multiplicationColumnTen
@@ -77,10 +82,10 @@
     operations:
       -
         operator: '*'
-        values: 2,3,4,5,10
+        values: 5,10
 -
   name: multiplicationColumnTwoThreeFourTest
-  label: toets over tafels van 2, 3 en 4
+  label: tafels van 2, 3 en 4
   animation: line
   type: test
   dependencies: multiplicationColumnTwo,multiplicationColumnThree,multiplicationColumnFour
@@ -97,6 +102,7 @@
   name: multiplicationColumnSix
   label: tafel van 6
   animation: line
+  type: practice
   subLevels:
   -
     range:
@@ -110,6 +116,7 @@
   name: multiplicationColumnSeven
   label: tafel van 7
   animation: line
+  type: practice
   subLevels:
   -
     range:
@@ -123,6 +130,7 @@
   name: multiplicationColumnEight
   label: tafel van 8
   animation: line
+  type: practice
   subLevels:
   -
     range:
@@ -136,6 +144,7 @@
   name: multiplicationColumnNine
   label: tafel van 9
   animation: line
+  type: practice
   subLevels:
   -
     range:
@@ -146,8 +155,8 @@
         operator: '*'
         values: 9
 -
-  name: multiplicationColumnFiveTenTest
-  label: toets over tafels 6, 7, 8 en 9
+  name: multiplicationColumnSixSevenEightNineTest
+  label: tafels van 6, 7, 8 en 9
   animation: line
   type: test
   dependencies: multiplicationColumnSix,multiplicationColumnSeven,multiplicationColumnEight,multiplicationColumnNine

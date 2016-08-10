@@ -87,6 +87,7 @@ andere regel*/
     text-align: center;
     background-color: grey;
     border: 0.3vh solid black;
+    cursor:hand
 }
 
 .sum-controls .null {

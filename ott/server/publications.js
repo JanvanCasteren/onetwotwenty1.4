@@ -11,3 +11,7 @@ Meteor.publish("sums", function (level) {
   return Sums.find({levels: { $in: [level] }});
 });
 
+Meteor.publish("testsums", function (level) {
+  return Testsums.find({levels: { $in: [level] }});
+});
+

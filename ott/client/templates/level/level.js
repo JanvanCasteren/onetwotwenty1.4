@@ -20,9 +20,11 @@ Template.level.helpers({
         var sortOrder = Template.instance().state.get('sortOrder');
         // this helper returns a cursor of
         // all of the posts in the collection
-        console.log(sortOrder);
-        console.log(sortObjects[sortOrder]);
-        return Sums.find({}, {sort: sortObjects[sortOrder]});
+        if (Session.get('currentLevelType') === 'test') {
+            return Testsums.find({}, {sort: sortObjects[sortOrder]});
+        } else {
+            return Sums.find({}, {sort: sortObjects[sortOrder]});
+        }
     },
 
     isSortOrder: function(sortOrder) {

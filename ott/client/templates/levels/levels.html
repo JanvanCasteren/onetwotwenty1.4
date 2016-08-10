@@ -1,10 +1,13 @@
 <template name="levels">
     {{#each levels}}
         <div class="level-card {{type}}">
-            <div  class="level-label">{{label}}</div>
-            <div>
-                <span class="level-link link-sumslist" data-name="{{name}}">sommen</span>
-                <span class="level-link link-sum"  data-name="{{name}}">oefenen</span>
+            <div class="level-card-left">
+                <div class="level-label">{{label}}</div>
+                {{>progress percentage = (progressPercentage name)}}
+            </div>
+            <div class="level-card-right">
+                <div class="level-button link-sumslist level-button-active" data-name="{{name}}">sommen</div>
+                <div class="level-button link-sum {{buttonClass name}}" data-name="{{name}}">oefenen</div>
             </div>
         </div>
     {{/each}}

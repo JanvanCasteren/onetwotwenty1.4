@@ -3,11 +3,12 @@ sumStore = function () {
         sumVar = new ReactiveVar(),
         levelVar = new ReactiveVar(),
         stateVar = new ReactiveVar(false),
-        //isRetry becomes true when the user gets
-        //an (immediate) second try on a sum that
-        //was made falsely
+    //isRetry becomes true when the user gets
+    //an (immediate) second try on a sum that
+    //was made falsely
         isRetry = new ReactiveVar(false),
         lastGivenAnswerIsCorrect = true,
+        incorrectSums = [],
     //needed for tracking the time the user needs
     //to answer the question
         reactionTime = 0,
@@ -40,16 +41,16 @@ sumStore = function () {
     };
 
     //PUBLIC METHODS (for testing purpose only)
-   self.reset = function () {
-       sumVar = new ReactiveVar();
-       levelVar = new ReactiveVar();
-       stateVar = new ReactiveVar(false);
-       previousAnswer = new ReactiveVar(false);
-       enteredAnswer = '';
-       lastGivenAnswerIsCorrect = true;
-       reactionTime = 0;
-       timeStart = 0;
-       digits = [];
+    self.reset = function () {
+        sumVar = new ReactiveVar();
+        levelVar = new ReactiveVar();
+        stateVar = new ReactiveVar(false);
+        previousAnswer = new ReactiveVar(false);
+        enteredAnswer = '';
+        incorrectSums = [];
+        reactionTime = 0;
+        timeStart = 0;
+        digits = [];
     };
 
     self.setLevel = function (levelName) {
@@ -69,7 +70,7 @@ sumStore = function () {
     //REGISTER ACTIONS
     self.tokenId = Dispatcher.register(function (action) {
         var state = stateVar.get()
-        ;
+            ;
 
         switch (action.type) {
             case SumActions.SUM_START:
@@ -105,12 +106,11 @@ sumStore = function () {
 
     //ACTION HANDLERS
     var initData = function () {
-        //the sum route subscribes to only one level
-        //so we use findOne to pick up that level
-        var level = Levels.findOne();
+        self.reset();
+        var levelName = Session.get('currentLevel');
+        console.log(levelName);
+        var level = Levels.find({name: levelName}).fetch()[0];
         levelVar.set(level);
-        //put first sum on screen
-        //nextSum();
     };
 
     var handleAnswerButtonEntry = function (buttonContent, time) {
@@ -176,12 +176,15 @@ sumStore = function () {
     var handleAnswer = function (answerStr) {
         var sum = sumVar.get(),
             state = stateVar.get(),
-            expectedAnswer = sum.answer.toString()
+            answer = parseInt(answerStr)
             ;
 
         enteredAnswer = answerStr;
-        sum.handleAnswer(parseInt(answerStr), reactionTime);
-        if (answerStr === expectedAnswer) {
+        sum.givenAnswer = answer;
+        if (lastGivenAnswerIsCorrect) {
+            sum.handleAnswer(answer, reactionTime);
+        }
+        if (answer === sum.answer) {
             state = SumStates.ANSWERED_CORRECT;
             lastGivenAnswerIsCorrect = true;
             //show next sum automatically after timeout
@@ -198,7 +201,8 @@ sumStore = function () {
 
     var nextSum = function () {
         var level = levelVar.get(),
-            state = stateVar.get()
+            state = stateVar.get(),
+            sumId
             ;
 
         if (state === SumStates.ANSWERED_INCOMPLETE) {
@@ -218,9 +222,25 @@ sumStore = function () {
         digits = [];
 
         if (lastGivenAnswerIsCorrect) {
-            sumVar.set(Sums.findOne(level.getNextSum()));
+
+            sumId = level.getNextSum();
+            console.log(level);
+            console.log(sumId);
+            if (sumId !== null) {
+                sumVar.set(Sums.findOne(sumId));
+            } else {
+                //show popup and return to home
+                Session.set('popup', {
+                    show: true,
+                    text: 'Je hoeft nu niet verder te oefenen met de ' + level.label,
+                    route: '/'  //route to follow when popup is closed
+                });
+            }
         }
-        stateVar.set(SumStates.READY);
+
+        if(sumId !== null) {
+            stateVar.set(SumStates.READY);
+        }
 
     }
 

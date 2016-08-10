@@ -1,0 +1,54 @@
+.level-card {
+    clear:both;
+    width: 100%;
+    font-size: 4vh;
+    padding: 2vh 1vh;
+    border-bottom: 1px solid white;
+    height: 20vh;
+}
+
+.level-card-left {
+    float:left;
+    width: 70%;
+    padding-left:1.5vh;
+    padding-right: 3vh;
+}
+
+.level-card-right {
+    text-align: center;
+    float:left;
+    width: 29.99999%;
+}
+
+.level-label {
+    margin-top: 2.5vh;
+    margin-bottom: 3vh;
+}
+
+.level-button  {
+    cursor:hand
+    height:5vh;
+    line-height:5vh;
+    padding-bottom: 0.2vh;
+    width:80%;
+    text-align: center;
+    background-color: grey;
+    border: 0.3vh solid black;
+    font-size: 3vh;
+    border-radius: 1vh;
+    margin: 1.5vh;
+}
+
+.level-button-active {
+    cursor:hand;
+}
+
+.level-button-inactive {
+    background-color: #555;
+    color: #999;
+}
+
+
+.level-card.compilation {
+    width: 100%;
+}

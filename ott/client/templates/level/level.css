@@ -1,5 +1,10 @@
+.level-table th  {
+    font-weight: normal;
+}
+
 .level-table td, .level-table th  {
     text-align:center;
+    height: 8.5vh;
 }
 
 .level-header {
@@ -18,7 +23,7 @@
     width:34%;
 }
 
-.level-sum-score {
+td.level-sum-score {
     height: 4vh;
     font-size: 16px; /*anders worden de sterren verschoven weergegeven*/
 }

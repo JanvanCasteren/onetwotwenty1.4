@@ -49,6 +49,7 @@ Onetotwenty.Sumbuilder.prototype = {
                         orderNumber++;
                         sumObjects.push({
                             sum: sum,
+                            type: levelObject.type,
                             orderNumber: orderNumber,
                             levels: [levelObject.name],
                             subLevel: sublevelNr

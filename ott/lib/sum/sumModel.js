@@ -11,8 +11,12 @@ var base = CollectionModelBase,
 
 //create the constructor
 Sum = function (doc, collection) {
+
+    //child class pas the collection in
+    collection = collection || Sums;
+
     //call base class constructor
-    base.call(this, Sums, doc);
+    base.call(this, collection, doc);
 
     //initialise persistant private properties
     //(the fields of the MongoDB document)
@@ -122,7 +126,6 @@ Sum.prototype = _.extend(Sum.prototype, {
         check(reactionTime, Number);
 
         var isCorrect = false;
-        this._givenAnswer = givenAnswer;
 
         //update correct and reactime
         if (givenAnswer === this.answer) {

@@ -12,6 +12,7 @@ html {
 }
 
 body, a {
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
     color: white;
     font-size: 5vh;
     overflow: hidden;
@@ -25,17 +26,22 @@ body, a {
 }
 
 #header {
-    height: auto;
+    height: 7vh;
     border-bottom: 1px white;
+    padding-left: 1.5vh;
+    padding-top: 0.5vh;
+    position:fixed;
+    z-index: 10000;
 }
 
 /*combination of height 100% and overflow-y
  auto makes innercontainer scrollable and only
  show scrollbar when needed*/
 #inner-container {
+    padding-top: 7vh;
     position: relative;
-    height: 90%;
-    overflow:hidden;
+    height: 100%;
+    overflow:scroll;
 }
 
 .home-link {

@@ -18,6 +18,7 @@ Level = function (doc) {
     //(the fields of the MongoDB document)
     this._name = doc.name;
     this._label = doc.label;
+    this._orderNumber = doc.orderNumber;
     this._type = doc.type;
     this._animation = doc.animation;
     this._queue = doc.queue || [];
@@ -42,6 +43,11 @@ Object.defineProperties(Level.prototype, {
     name: {
         get: function () {
             return this._name;
+        }
+    },
+    orderNumber: {
+        get: function () {
+            return this._orderNumber;
         }
     },
     label: {
@@ -71,12 +77,14 @@ Level.prototype = _.extend(Level.prototype, {
      * is empty, regenerate it first
      */
     getNextSum: function () {
-        var sumId;
+        var sumId = null;
         if (this._queue.length === 0) {
             this.createQueue();
         }
-        sumId = this._queue.shift();
-        this.save();
+        if (this._queue.length > 0) {
+            sumId = this._queue.shift();
+            this.save();
+        }
         return sumId;
     },
 
@@ -133,6 +141,7 @@ Level.prototype = _.extend(Level.prototype, {
         return {
             name: this._name,
             label: this._label,
+            orderNumber: this._orderNumber,
             type: this._type,
             animation: this._animation,
             queue: this._queue

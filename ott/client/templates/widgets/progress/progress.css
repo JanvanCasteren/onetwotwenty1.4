@@ -1,0 +1,31 @@
+/*taken from https://css-tricks.com/css3-progress-bars
+ but without the fancy 3d looks*/
+
+.progress {
+    width: 100%;
+    height: 3vh;  /* Can be anything */
+    position: relative;
+    background: #555;
+    border-radius: 2vh;
+    padding: 1vh;
+    box-shadow: inset 0 -1px 1px rgba(255,255,255,0.3);
+}
+
+.progress > span {
+    top: -0.25vh;
+    display: block;
+    height: 1.5vh;
+    border-top-right-radius: 1vh;
+    border-bottom-right-radius: 1vh;
+    border-top-left-radius: 2vh;
+    border-bottom-left-radius: 2vh;
+    background-color: #ffb063;
+    position: relative;
+    overflow: hidden;
+}
+
+.progress > span.finished {
+    border-top-right-radius: 2vh;
+    border-bottom-right-radius: 2vh;
+}
+
