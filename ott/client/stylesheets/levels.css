@@ -1,0 +1,20 @@
+.level-card {
+    width: 50%;
+    float:left;
+    font-size: 4vh;
+    text-align: center;
+    padding: 2vh 1vh;
+    border: 1px solid white;
+}
+
+.level-title {
+
+}
+
+.level-link a {
+    font-size: 4vh;
+}
+
+.level-card.compilation {
+    width: 100%;
+}

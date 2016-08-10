@@ -1,0 +1,98 @@
+.sum-score {
+    position:absolute;
+    right:0;
+    margin: -5vh 5vh;
+    height: 4vh;
+    font-size: 16px; /*anders worden de sterren verschoven weergegeven*/
+}
+
+.sum-sum {
+    position:absolute;
+    margin-left: 20vh;
+    left:0;
+    top: 10vh;
+    width: 75vh;
+    letter-spacing: 1.5vh;
+    font-size: 8vh;
+}
+
+.sum-sum.sum-previous {
+    top: 5vh;
+    font-size: 6vh;
+}
+
+.sum-answer {
+    letter-spacing: 0.5vh;
+    margin-left: 1vh;
+}
+
+.sum-sum span {
+    display: inline-block;
+}
+
+.sum-feedback {
+    height: 6vh;
+    width: 6vh;
+    background-size: 6vh 6vh;
+}
+
+.sum-false {
+    position:relative;
+}
+
+.sum-false-times {
+    color:red;
+    position: absolute;
+    left: -8.5vh;
+    top: -4vh;
+    font-size: 13vh;
+}
+
+.sum-correct {
+    margin-left: 2vh;
+    background-image: url('img/correct.svg');
+}
+
+.sum-nav {
+    position:absolute;
+    text-align: center;
+    margin:auto;
+    left: 33vh;
+    top: 25vh;
+    height: 10vh;
+    width: 12vh;
+    color:white;
+    background-color:gray;
+    border: 0.3vh solid black;
+    padding-top: 1.2vh;
+}
+
+.sum-controls {
+    position:absolute;
+    bottom:7vh;
+    height:40vh;
+    margin: 0 15%;
+    width:70%;
+    border: 0.3vh solid black;
+}
+
+/*als ik overflow-y heb aanstaan op
+auto heb ik problemen met doorschuiven naar
+andere regel*/
+.sum-controls div {
+    float:left;
+    height:10vh;
+    line-height:10vh;
+    width:33.3333333%;
+    text-align: center;
+    background-color: grey;
+    border: 0.3vh solid black;
+}
+
+.sum-controls .null {
+    width: 66.6666666%;
+}
+
+.sum-controls .back {
+    width:33.3333333%;
+}

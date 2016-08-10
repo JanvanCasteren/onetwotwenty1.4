@@ -1,0 +1,13 @@
+
+.score-star {
+    margin-right:-7px;
+    height:100%;
+}
+
+.score-star linearGradient stop.filled {
+    stop-color: #ffb063;
+}
+
+.score-star linearGradient stop.empty {
+    stop-color: white;
+}

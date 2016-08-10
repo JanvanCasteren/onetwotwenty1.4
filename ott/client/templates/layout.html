@@ -1,0 +1,12 @@
+<template name="layout">
+    <div id="outer-container">
+        <div id="header">
+            <a href="/">
+                <img class="home-link" src="img/home.svg" alt="home">
+            </a>
+        </div>
+        <div id="inner-container">
+            {{> yield}}
+        </div>
+    </div>
+</template>

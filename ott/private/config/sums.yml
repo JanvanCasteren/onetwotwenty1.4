@@ -1,0 +1,134 @@
+-
+  name: oneTwoTen
+  animation: line
+  minSum: 1
+  maxSum: 10
+  sublevels:
+  -
+    range:
+      start: 0
+      end: 4
+    operations:
+      -
+        operator: '+'
+        start: 1
+        end: 2
+  -
+    range:
+      start: 1
+      end: 6
+    operations:
+      -
+        operator: '-'
+        start: 1
+        end: 2
+  -
+    range:
+      start: 5
+      end: 9
+    operations:
+      -
+        operator: '+'
+        start: 1
+        end: 2
+  -
+    range:
+      start: 6
+      end: 10
+    operations:
+      -
+        operator: '-'
+        start: 1
+        end: 2
+  -
+    inverted: true
+    coupleTo: inversion
+    range:
+      start: 3
+      end: 9
+    operations:
+      -
+        operator: '+'
+        start: 1
+        end: 2
+  -
+    inverted: true
+    range:
+      start: 0
+      end: 5
+    operations:
+      -
+        operator: '-'
+        start: 1
+        end: 2
+-
+  name: oneTwoTwenty
+  minSum: 11
+  maxSum: 20
+  sublevels:
+  -
+    helper: line
+    range:
+      start: 10
+      end: 5
+    operations:
+      -
+        operator: '+'
+        start: 1
+        end: 2
+  -
+    range:
+      start: 0
+      end: 5
+    operations:
+      -
+        operator: '-'
+        start: 1
+        end: 2
+  -
+    range:
+      start: 6
+      end: 9
+    operations:
+      -
+        operator: '-'
+        start: 1
+        end: 2
+  -
+    range:
+      start: 6
+      end: 9
+    operations:
+      -
+        operator: '+'
+        start: 1
+        end: 2
+  -
+    range:
+      start: 6
+      end: 9
+    operations:
+      -
+        operator: '-'
+        start: 1
+        end: 2
+  -
+    inverted: true
+    range:
+      start: 0
+      end: 5
+    operations:
+      -
+        operator: '+'
+        start: 1
+        end: 2
+  -
+    inverted: true
+    range:
+      start: 0
+      end: 5
+    operations:
+      -
+        operator: '-'
+        start: 1
+        end: 2

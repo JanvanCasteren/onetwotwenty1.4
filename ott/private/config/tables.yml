@@ -1,0 +1,162 @@
+-
+  name: multiplicationColumnTwo
+  label: tafel van 2
+  animation: line
+  subLevels:
+  -
+    range:
+      start: 2
+      end: 10
+    operations:
+      -
+        operator: '*'
+        values: 2
+-
+  name: multiplicationColumnThree
+  label: tafel van 3
+  animation: line
+  subLevels:
+  -
+    range:
+      start: 2
+      end: 10
+    operations:
+      -
+        operator: '*'
+        values: 3
+-
+  name: multiplicationColumnFour
+  label: tafel van 4
+  animation: line
+  subLevels:
+  -
+    range:
+      start: 2
+      end: 10
+    operations:
+      -
+        operator: '*'
+        values: 4
+-
+  name: multiplicationColumnFive
+  label: tafel van 5
+  animation: line
+  subLevels:
+  -
+    range:
+      start: 2
+      end: 10
+    operations:
+      -
+        operator: '*'
+        values: 5
+-
+  name: multiplicationColumnTen
+  label: tafel van 10
+  animation: line
+  subLevels:
+  -
+    range:
+      start: 2
+      end: 10
+    operations:
+      -
+        operator: '*'
+        values: 10
+-
+  name: multiplicationColumnFiveTenTest
+  label: toets over tafels van 5 en 10
+  animation: line
+  type: test
+  dependencies: multiplicationColumnFive,multiplicationColumnTen
+  subLevels:
+  -
+    range:
+      start: 2
+      end: 10
+    operations:
+      -
+        operator: '*'
+        values: 2,3,4,5,10
+-
+  name: multiplicationColumnTwoThreeFourTest
+  label: toets over tafels van 2, 3 en 4
+  animation: line
+  type: test
+  dependencies: multiplicationColumnTwo,multiplicationColumnThree,multiplicationColumnFour
+  subLevels:
+  -
+    range:
+      start: 2
+      end: 10
+    operations:
+      -
+        operator: '*'
+        values: 2,3,4
+-
+  name: multiplicationColumnSix
+  label: tafel van 6
+  animation: line
+  subLevels:
+  -
+    range:
+      start: 2
+      end: 10
+    operations:
+      -
+        operator: '*'
+        values: 6
+-
+  name: multiplicationColumnSeven
+  label: tafel van 7
+  animation: line
+  subLevels:
+  -
+    range:
+      start: 2
+      end: 10
+    operations:
+      -
+        operator: '*'
+        values: 7
+-
+  name: multiplicationColumnEight
+  label: tafel van 8
+  animation: line
+  subLevels:
+  -
+    range:
+      start: 2
+      end: 10
+    operations:
+      -
+        operator: '*'
+        values: 8
+-
+  name: multiplicationColumnNine
+  label: tafel van 9
+  animation: line
+  subLevels:
+  -
+    range:
+      start: 2
+      end: 10
+    operations:
+      -
+        operator: '*'
+        values: 9
+-
+  name: multiplicationColumnFiveTenTest
+  label: toets over tafels 6, 7, 8 en 9
+  animation: line
+  type: test
+  dependencies: multiplicationColumnSix,multiplicationColumnSeven,multiplicationColumnEight,multiplicationColumnNine
+  subLevels:
+  -
+    range:
+      start: 2
+      end: 10
+    operations:
+      -
+        operator: '*'
+        values: 6,7,8,9

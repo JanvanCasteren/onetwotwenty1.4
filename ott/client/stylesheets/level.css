@@ -1,0 +1,24 @@
+.level-table td, .level-table th  {
+    text-align:center;
+}
+
+.level-header {
+    padding-bottom: 1vh;
+}
+
+.level-sum-sum, .level-header-sum {
+    width:39%;
+}
+
+.level-sum-time, .level-header-time {
+    width:27%;
+}
+
+.level-sum-score, .level-header-score {
+    width:34%;
+}
+
+.level-sum-score {
+    height: 4vh;
+    font-size: 16px; /*anders worden de sterren verschoven weergegeven*/
+}

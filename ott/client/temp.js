@@ -1,0 +1,1 @@
+Session.set('velocity.isEnabled', true);

@@ -1,0 +1,11 @@
+<template name="levels">
+    {{#each levels}}
+        <div class="level-card {{type}}">
+            <div  class="level-label">{{label}}</div>
+            <div>
+                <span class="level-link link-sumslist" data-name="{{name}}">sommen</span>
+                <span class="level-link link-sum"  data-name="{{name}}">oefenen</span>
+            </div>
+        </div>
+    {{/each}}
+</template>

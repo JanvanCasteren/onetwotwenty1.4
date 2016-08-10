@@ -1,0 +1,44 @@
+html {
+    box-sizing: border-box;
+}
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, a {
+    color: white;
+    font-size: 5vh;
+    overflow: hidden;
+}
+
+#outer-container {
+    margin: auto;
+    height: 100vh;
+    width: 77vh;
+    background-color: midnightblue;
+}
+
+#header {
+    height: auto;
+    border-bottom: 1px white;
+}
+
+/*combination of height 100% and overflow-y
+ auto makes innercontainer scrollable and only
+ show scrollbar when needed*/
+#inner-container {
+    position: relative;
+    height: 90%;
+    overflow:hidden;
+}
+
+.home-link {
+    width: 6vh;
+    height: 6vh;
+}

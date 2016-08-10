@@ -1,0 +1,62 @@
+<template name="level">
+    <table class="full level-table">
+        <thead>
+            <tr>
+                <th class="level-header level-header-sum">
+                    {{#if isSortOrder "sumUp"}}
+                    <span class="arrow arrow-down arrow-at-left"></span>
+                    {{/if}}
+                    {{#if isSortOrder "sumDown"}}
+                    <span class="arrow arrow-up arrow-at-left"></span>
+                    {{/if}}
+                    <span>som</span>
+                    {{#if isSortOrder "sumUp"}}
+                        <span class="arrow arrow-down arrow-at-right"></span>
+                    {{/if}}
+                    {{#if isSortOrder "sumDown"}}
+                        <span class="arrow arrow-up arrow-at-right"></span>
+                    {{/if}}
+                </th>
+                <th class="level-header level-header-time">
+                    {{#if isSortOrder "timeUp"}}
+                        <span class="arrow arrow-down arrow-at-left"></span>
+                    {{/if}}
+                    {{#if isSortOrder "timeDown"}}
+                        <span class="arrow arrow-up arrow-at-left"></span>
+                    {{/if}}
+                    <span>tijd (s)</span>
+                    {{#if isSortOrder "timeUp"}}
+                        <span class="arrow arrow-down arrow-at-right"></span>
+                    {{/if}}
+                    {{#if isSortOrder "timeDown"}}
+                        <span class="arrow arrow-up arrow-at-right"></span>
+                    {{/if}}
+                </th>
+                <th class="level-header level-header-score">
+                    {{#if isSortOrder "scoreUp"}}
+                        <span class="arrow arrow-down arrow-at-left"></span>
+                    {{/if}}
+                    {{#if isSortOrder "scoreDown"}}
+                        <span class="arrow arrow-up arrow-at-left"></span>
+                    {{/if}}
+                    <span>score</span>
+                    {{#if isSortOrder "scoreUp"}}
+                        <span class="arrow arrow-down arrow-at-right"></span>
+                    {{/if}}
+                    {{#if isSortOrder "scoreDown"}}
+                        <span class="arrow arrow-up arrow-at-right"></span>
+                    {{/if}}
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+        {{#each sums}}
+            <tr>
+                <td class="level-sum-sum">{{sum}} = {{answer}}</td>
+                <td class="level-sum-time">{{time minReactionTime}}</td>
+                <td class="level-sum-score"> {{>score stars = (stars score)}}</td>
+            </tr>
+        {{/each}}
+        </tbody>
+    </table>
+</template>

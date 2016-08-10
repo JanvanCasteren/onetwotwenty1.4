@@ -1,0 +1,30 @@
+<template name="sum">
+
+    <div class="sum-sum">
+        <span class="sum-question">
+            {{question}}
+        </span><span>=</span><!--
+        --><span class="sum-answer {{answerClass}}">
+        {{answer}}
+    </span>{{#if isCorrect}}<!--
+        --><span class="sum-correct sum-feedback"></span>{{/if}}<!--
+        -->{{#if isFalse}}<span class="sum-false sum-feedback"><span class="sum-false-times">&times;</span></span>
+        {{/if}}
+    </div>
+
+    <div class="sum-nav">>></div>
+
+    <div class="sum-controls">
+        <div class="zeven">{{ buttonValue 7 }}</div>
+        <div class="acht">{{ buttonValue 8 }}</div>
+        <div class="negen">{{ buttonValue 9 }}</div>
+        <div class="vier">{{ buttonValue 4 }}</div>
+        <div class="vijf">{{ buttonValue 5 }}</div>
+        <div class="zes">{{ buttonValue 6 }}</div>
+        <div class="one">{{ buttonValue 1 }}</div>
+        <div class="two">{{ buttonValue 2 }}</div>
+        <div class="three">{{ buttonValue 3 }}</div>
+        <div class="null">0</div>
+        <div class="back">&lt;--</div>
+    </div>
+</template>

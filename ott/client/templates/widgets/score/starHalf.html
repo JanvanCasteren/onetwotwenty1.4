@@ -1,0 +1,16 @@
+<template name="starHalf">
+    <svg xmlns="http://www.w3.org/2000/svg" class="score-star" viewBox="0 0 200 200">
+        <defs>
+            <linearGradient id="score-half-fill">
+                <stop class="filled" offset="0%" />
+                <stop class="filled" offset="50%" />
+                <stop class="empty" offset="50%" />
+                <stop class="empty" offset="100%" />
+            </linearGradient>
+        </defs>
+        <g fill="url(#score-half-fill)" stroke="black" stroke-width="5">
+            <polygon points="100,10 40,198 190,78 10,78 160,198"/>
+            <polygon points="100,10 40,198 190,78 10,78 160,198" stroke="none"/>
+        </g>
+    </svg>
+</template>
