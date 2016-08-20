@@ -1,0 +1,30 @@
+.numberline {
+    fill: white;
+    stroke: white;
+}
+
+.numberline line {
+    stroke-width: 3px;
+}
+
+.numberline path {
+    stroke-width: 2px;
+    fill: none;
+}
+
+.numberline text {
+    stroke:none;
+    text-anchor: middle;
+}
+
+.numberline text.marker {
+    font-size: 26px;
+}
+
+.numberline text.arc-above {
+    font-size: 20px;
+}
+
+.numberline text.arc-below {
+    font-size: 16px;
+}

@@ -33,3 +33,8 @@ Router.route('/sum', {
     }
 });
 
+Router.route('/test', {
+    name: 'testtableshelp'
+});
+
+

@@ -44,7 +44,6 @@ Template.levels.helpers({
         }
     }
 
-
 });
 
 Template.levels.events({

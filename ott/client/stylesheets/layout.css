@@ -21,7 +21,7 @@ body, a {
 #outer-container {
     margin: auto;
     height: 100vh;
-    width: 77vh;
+    max-width: 77vh;
     background-color: midnightblue;
 }
 

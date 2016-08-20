@@ -3,16 +3,18 @@
     <div class="sum-sum">
         <span class="sum-question">
             {{question}}
-        </span><span>=</span><!--
-        --><span class="sum-answer {{answerClass}}">
+        </span><span>{{#if showEqualSign}}={{/if}}</span><!--
+        --><span class="sum-answer">
         {{answer}}
     </span>{{#if isCorrect}}<!--
         --><span class="sum-correct sum-feedback"></span>{{/if}}<!--
         -->{{#if isFalse}}<span class="sum-false sum-feedback"><span class="sum-false-times">&times;</span></span>
         {{/if}}
     </div>
-
-    <div class="sum-nav">>></div>
+    <div class="sum-help">
+        {{>numberline config = helpConfig}}
+    </div>
+    <div class="sum-nav">&gt;&gt;</div>
 
     <div class="sum-controls">
         <div class="zeven">{{ buttonValue 7 }}</div>
@@ -25,6 +27,6 @@
         <div class="two">{{ buttonValue 2 }}</div>
         <div class="three">{{ buttonValue 3 }}</div>
         <div class="null">0</div>
-        <div class="back">&lt;--</div>
+        <div class="back" data-button="backspace">&loarr;</div>
     </div>
 </template>

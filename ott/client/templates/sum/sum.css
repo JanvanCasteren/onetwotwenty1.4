@@ -53,27 +53,35 @@
     background-image: url('img/correct.svg');
 }
 
+.sum-help {
+    position:absolute;
+    width: 63vh;
+    left: 5vh;
+    top: 22vh;
+    height: 18vh;
+}
+
 .sum-nav {
     position:absolute;
     text-align: center;
     margin:auto;
-    left: 33vh;
-    top: 25vh;
-    height: 10vh;
-    width: 12vh;
+    left: 31vh;
+    top: 42vh;
+    height: 9vh;
+    width: 13vh;
     color:white;
     background-color:gray;
-    border: 0.3vh solid black;
-    padding-top: 1.2vh;
+    border: 0.5vh solid #191970;
+    padding-top: 0.9vh;
 }
 
 .sum-controls {
     position:absolute;
-    bottom:7vh;
+    bottom:5vh;
     height:40vh;
     margin: 0 15%;
     width:70%;
-    border: 0.3vh solid black;
+    border: 0.3vh solid #191970;
 }
 
 /*als ik overflow-y heb aanstaan op
@@ -86,7 +94,7 @@ andere regel*/
     width:33.3333333%;
     text-align: center;
     background-color: grey;
-    border: 0.3vh solid black;
+    border: 0.3vh solid #191970;
     cursor:hand
 }
 
@@ -96,4 +104,5 @@ andere regel*/
 
 .sum-controls .back {
     width:33.3333333%;
+    font-weight:bold;
 }

@@ -1,20 +1,22 @@
 sumStore = function () {
     var self = this,
-        sumVar = new ReactiveVar(),
-        levelVar = new ReactiveVar(),
-        stateVar = new ReactiveVar(false),
+        sumVar,
+        levelVar,
+        stateVar,
     //isRetry becomes true when the user gets
     //an (immediate) second try on a sum that
     //was made falsely
-        isRetry = new ReactiveVar(false),
-        lastGivenAnswerIsCorrect = true,
-        incorrectSums = [],
+        isRetry,
+        lastGivenAnswerIsCorrect,
+        incorrectSums,
     //needed for tracking the time the user needs
     //to answer the question
-        reactionTime = 0,
-        timeStart = 0,
+        reactionTime,
+        timeStart,
     //gathers the digits the user enters
-        digits = []
+        digits,
+        //keeps the entered answer
+        enteredAnswer
         ;
 
     //GETTERS
@@ -40,18 +42,24 @@ sumStore = function () {
         return digits.join('');
     };
 
-    //PUBLIC METHODS (for testing purpose only)
-    self.reset = function () {
-        sumVar = new ReactiveVar();
-        levelVar = new ReactiveVar();
+    //PUBLIC METHODS //for testing purposes only
+
+    self.init = function () {
+        //initialisation
+        sumVar = new ReactiveVar(false);
+        levelVar = new ReactiveVar(false);
         stateVar = new ReactiveVar(false);
-        previousAnswer = new ReactiveVar(false);
+        isRetry = new ReactiveVar(false);
         enteredAnswer = '';
+        lastGivenAnswerIsCorrect = true;
         incorrectSums = [];
         reactionTime = 0;
         timeStart = 0;
         digits = [];
     };
+
+    //first initalisation
+    self.init();
 
     self.setLevel = function (levelName) {
         levelVar.set(Levels.find({name: levelName}).fetch()[0]);
@@ -93,6 +101,13 @@ sumStore = function () {
                     handleAnswerButtonEntry(action.buttonContent, action.time);
                 }
                 break;
+            case SumActions.USER_HIT_BACKSPACE:
+                console.log(state);
+                if(state === SumStates.ANSWERED_INCOMPLETE) {
+                    removeLastDigit();
+                }
+                console.log('backspace ');
+                break;
             case SumActions.USER_CHOOSED_NEXT:
                 if ([false,
                         SumStates.ANSWERED_FALSE,
@@ -106,9 +121,8 @@ sumStore = function () {
 
     //ACTION HANDLERS
     var initData = function () {
-        self.reset();
+        self.init();
         var levelName = Session.get('currentLevel');
-        console.log(levelName);
         var level = Levels.find({name: levelName}).fetch()[0];
         levelVar.set(level);
     };
@@ -171,6 +185,14 @@ sumStore = function () {
             answer = digits.join('');
             handleAnswer(answer);
         }
+    };
+
+    var removeLastDigit = function() {
+        var state = stateVar.get();
+        digits.pop();
+        enteredAnswer = digits.join('');
+        state = SumStates.READY;
+        stateVar.set(state);
     };
 
     var handleAnswer = function (answerStr) {

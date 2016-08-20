@@ -1,0 +1,18 @@
+<template name="numberline">
+    <svg xmlns="http://www.w3.org/2000/svg" class="numberline" viewBox="0 0 700 200" >
+        <g>
+        {{#with getDataTableSum config}}
+            {{#each line in lines}}
+                <line x1="{{line.x1}}" y1="{{line.y1}}" x2="{{line.x2}}" y2="{{line.y2}}"/>
+            {{/each}}
+            {{#each arc in arcs}}
+                <path d="M{{arc.mx}} {{arc.my}}
+                a {{arc.rx}} {{arc.ry}} {{arc.xar}} {{arc.laf}} {{arc.sf}} {{arc.dx}} {{arc.dy}}"/>
+            {{/each}}
+            {{#each text in texts}}
+                <text class="{{text.className}}" x="{{text.x}}" y="{{text.y}}">{{text.text}}</text>
+            {{/each}}
+        {{/with}}
+        </g>
+    </svg>
+</template>
