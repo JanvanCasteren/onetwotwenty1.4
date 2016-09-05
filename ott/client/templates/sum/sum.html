@@ -1,32 +1,47 @@
 <template name="sum">
 
-    <div class="sum-sum">
-        <span class="sum-question">
-            {{question}}
-        </span><span>{{#if showEqualSign}}={{/if}}</span><!--
-        --><span class="sum-answer">
-        {{answer}}
-    </span>{{#if isCorrect}}<!--
-        --><span class="sum-correct sum-feedback"></span>{{/if}}<!--
-        -->{{#if isFalse}}<span class="sum-false sum-feedback"><span class="sum-false-times">&times;</span></span>
+    <div class="sum-container sum-help-container">
+        {{#if showNumberline}}
+            <div class="sum-help">
+                {{>numberline config = helpConfig}}
+            </div>
         {{/if}}
     </div>
-    <div class="sum-help">
-        {{>numberline config = helpConfig}}
-    </div>
-    <div class="sum-nav">&gt;&gt;</div>
 
-    <div class="sum-controls">
-        <div class="zeven">{{ buttonValue 7 }}</div>
-        <div class="acht">{{ buttonValue 8 }}</div>
-        <div class="negen">{{ buttonValue 9 }}</div>
-        <div class="vier">{{ buttonValue 4 }}</div>
-        <div class="vijf">{{ buttonValue 5 }}</div>
-        <div class="zes">{{ buttonValue 6 }}</div>
-        <div class="one">{{ buttonValue 1 }}</div>
-        <div class="two">{{ buttonValue 2 }}</div>
-        <div class="three">{{ buttonValue 3 }}</div>
-        <div class="null">0</div>
-        <div class="back" data-button="backspace">&loarr;</div>
+    <div class="sum-container sum-sum-container">
+        <div class="sum-sum">
+        <span class="sum-question">
+            {{question}}
+        </span><span class="sum-equal">{{#if showEqualSign}}={{/if}}</span><!--
+        --><span class="sum-answer"><!--
+            --><span>{{answer}}</span><!--
+            -->{{#if isCorrect}}<!--
+        --><span class="sum-correct sum-feedback"></span>{{/if}}<!--
+        -->{{#if isFalse}}<span class="sum-feedback"><span class="sum-false" style="left: {{falseLeft}};">&times;</span></span>
+        {{/if}}
+             </span>
+        </div>
     </div>
+
+    <div class="sum-container sum-nav-container">
+        <div class="sum-nav">&gt;&gt;</div>
+    </div>
+
+    <div class="sum-container sum-controls-container">
+        <div class="sum-controls">
+            <div class="zeven">{{ buttonValue 7 }}</div>
+            <div class="acht">{{ buttonValue 8 }}</div>
+            <div class="negen">{{ buttonValue 9 }}</div>
+            <div class="vier">{{ buttonValue 4 }}</div>
+            <div class="vijf">{{ buttonValue 5 }}</div>
+            <div class="zes">{{ buttonValue 6 }}</div>
+            <div class="one">{{ buttonValue 1 }}</div>
+            <div class="two">{{ buttonValue 2 }}</div>
+            <div class="three">{{ buttonValue 3 }}</div>
+            <div class="null">0</div>
+            <div class="back" data-button="backspace">&loarr;</div>
+        </div>
+    </div>
+
+
 </template>

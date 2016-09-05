@@ -1,33 +1,46 @@
-.sum-score {
-    position:absolute;
-    right:0;
-    margin: -5vh 5vh;
-    height: 4vh;
-    font-size: 16px; /*anders worden de sterren verschoven weergegeven*/
-}
-
 .sum-sum {
-    position:absolute;
-    margin-left: 20vh;
-    left:0;
-    top: 10vh;
-    width: 75vh;
+    position:relative;
+    margin:auto;
+    width: 100vw;
+    max-width: 60vh;
+    text-align:center;
     letter-spacing: 1.5vh;
-    font-size: 8vh;
+    font-size: 7vh;
+    line-height: 9vh; /*to give room for check icon*/
 }
 
+/*
 .sum-sum.sum-previous {
     top: 5vh;
     font-size: 6vh;
 }
+*/
+
+.sum-sum > span {
+    display: inline-block;
+    position:absolute;
+}
+
+.sum-sum > span > span {
+    display: inline-block;
+    position: relative;
+}
+
+.sum-question {
+    letter-spacing: 0.5vh;
+    right: 50%;
+    margin-right: 4vh;
+}
+
+.sum-equal {
+    left: 50%;
+    margin-left: -2vh;
+}
 
 .sum-answer {
     letter-spacing: 0.5vh;
-    margin-left: 1vh;
-}
-
-.sum-sum span {
-    display: inline-block;
+    left: 50%;
+    margin-left: 4vh;
 }
 
 .sum-feedback {
@@ -37,15 +50,10 @@
 }
 
 .sum-false {
-    position:relative;
-}
-
-.sum-false-times {
-    color:red;
     position: absolute;
-    left: -8.5vh;
-    top: -4vh;
-    font-size: 13vh;
+    color:red;
+    font-size: 12vh;
+    top:-1vh;
 }
 
 .sum-correct {
@@ -54,21 +62,17 @@
 }
 
 .sum-help {
-    position:absolute;
-    width: 63vh;
-    left: 5vh;
-    top: 22vh;
-    height: 18vh;
+    margin:auto;
+    width: 85vw;
+    max-width: 63vh;
+
 }
 
 .sum-nav {
-    position:absolute;
     text-align: center;
     margin:auto;
-    left: 31vh;
-    top: 42vh;
-    height: 9vh;
-    width: 13vh;
+    max-width: 13vh;
+    width: 20vw;
     color:white;
     background-color:gray;
     border: 0.5vh solid #191970;
@@ -76,9 +80,6 @@
 }
 
 .sum-controls {
-    position:absolute;
-    bottom:5vh;
-    height:40vh;
     margin: 0 15%;
     width:70%;
     border: 0.3vh solid #191970;
@@ -95,7 +96,8 @@ andere regel*/
     text-align: center;
     background-color: grey;
     border: 0.3vh solid #191970;
-    cursor:hand
+    cursor:hand;
+
 }
 
 .sum-controls .null {

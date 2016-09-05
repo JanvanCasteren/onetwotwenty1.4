@@ -3,6 +3,8 @@ sumStore = function () {
         sumVar,
         levelVar,
         stateVar,
+        helpStateVar,
+        helpToPhaseOneTimeOut,
     //isRetry becomes true when the user gets
     //an (immediate) second try on a sum that
     //was made falsely
@@ -29,6 +31,9 @@ sumStore = function () {
     self.getState = function () {
         return stateVar.get();
     };
+    self.getHelpState = function () {
+        return helpStateVar.get();
+    };
     self.getEnteredAnswer = function () {
         return enteredAnswer;
     };
@@ -49,6 +54,10 @@ sumStore = function () {
         sumVar = new ReactiveVar(false);
         levelVar = new ReactiveVar(false);
         stateVar = new ReactiveVar(false);
+        helpStateVar =  new ReactiveVar(HelpStates.NO_HELP);
+        if(helpToPhaseOneTimeOut) {
+            clearTimeout(helpToPhaseOneTimeOut);
+        }
         isRetry = new ReactiveVar(false);
         enteredAnswer = '';
         lastGivenAnswerIsCorrect = true;
@@ -167,6 +176,10 @@ sumStore = function () {
 
         digits.push(digit);
 
+        if(helpToPhaseOneTimeOut) {
+            clearTimeout(helpToPhaseOneTimeOut);
+        }
+
         //record the reactiontime when the first
         //digits is entered
         if (digits.length === 1) {
@@ -209,12 +222,21 @@ sumStore = function () {
         if (answer === sum.answer) {
             state = SumStates.ANSWERED_CORRECT;
             lastGivenAnswerIsCorrect = true;
+            if(helpToPhaseOneTimeOut) {
+                clearTimeout(helpToPhaseOneTimeOut);
+            }
             //show next sum automatically after timeout
             //do for instance 10 in a row
         }
         else {
             state = SumStates.ANSWERED_FALSE;
             lastGivenAnswerIsCorrect = false;
+            //set correct helpphase
+            if(helpStateVar.get() === HelpStates.PHASE_ONE) {
+                helpStateVar.set(HelpStates.PHASE_TWO);
+            } else {
+                helpStateVar.set(HelpStates.PHASE_ONE);
+            }
         }
 
         //update the reactive vars
@@ -236,6 +258,15 @@ sumStore = function () {
             isRetry.set(true);
         } else {
             isRetry.set(false);
+            helpStateVar.set(HelpStates.NO_HELP);
+            //shift help state to fase one if user does not
+            //answer within four seconds
+            if(helpToPhaseOneTimeOut) {
+                clearTimeout(helpToPhaseOneTimeOut);
+            }
+            helpToPhaseOneTimeOut = setTimeout(function() {
+                helpStateVar.set(HelpStates.PHASE_ONE);
+            }, SumScoreTimes.SHOWHELP);
         }
 
         //set begintime, so we can track the time passed when the user
@@ -244,7 +275,6 @@ sumStore = function () {
         digits = [];
 
         if (lastGivenAnswerIsCorrect) {
-
             sumId = level.getNextSum();
             console.log(level);
             console.log(sumId);

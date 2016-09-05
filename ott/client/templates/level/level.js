@@ -21,9 +21,9 @@ Template.level.helpers({
         // this helper returns a cursor of
         // all of the posts in the collection
         if (Session.get('currentLevelType') === 'test') {
-            return Testsums.find({}, {sort: sortObjects[sortOrder]});
+            return Testsums.find({}, {sort: sortObjects[sortOrder], reactive:false});
         } else {
-            return Sums.find({}, {sort: sortObjects[sortOrder]});
+            return Sums.find({}, {sort: sortObjects[sortOrder], reactive:false});
         }
     },
 
@@ -45,51 +45,51 @@ Template.level.helpers({
         switch (score) {
             case 0:
                 return [
-                    {type: 'starEmpty'},
-                    {type: 'starEmpty'},
-                    {type: 'starEmpty'}
+                    {type: 'starEmptypng'},
+                    {type: 'starEmptypng'},
+                    {type: 'starEmptypng'}
                 ];
             case 1:
                 return [
-                    {type: 'starHalf'},
-                    {type: 'starEmpty'},
-                    {type: 'starEmpty'}
+                    {type: 'starHalfpng'},
+                    {type: 'starEmptypng'},
+                    {type: 'starEmptypng'}
                 ];
             case 2:
                 return [
-                    {type: 'starFull'},
-                    {type: 'starEmpty'},
-                    {type: 'starEmpty'}
+                    {type: 'starFullpng'},
+                    {type: 'starEmptypng'},
+                    {type: 'starEmptypng'}
                 ];
             case 3:
                 return [
-                    {type: 'starFull'},
-                    {type: 'starHalf'},
-                    {type: 'starEmpty'}
+                    {type: 'starFullpng'},
+                    {type: 'starHalfpng'},
+                    {type: 'starEmptypng'}
                 ];
             case 4:
                 return [
-                    {type: 'starFull'},
-                    {type: 'starFull'},
-                    {type: 'starEmpty'}
+                    {type: 'starFullpng'},
+                    {type: 'starFullpng'},
+                    {type: 'starEmptypng'}
                 ];
             case 5:
                 return [
-                    {type: 'starFull'},
-                    {type: 'starFull'},
-                    {type: 'starHalf'}
+                    {type: 'starFullpng'},
+                    {type: 'starFullpng'},
+                    {type: 'starHalfpng'}
                 ];
             case 6:
                 return [
-                    {type: 'starFull'},
-                    {type: 'starFull'},
-                    {type: 'starFull'}
+                    {type: 'starFullpng'},
+                    {type: 'starFullpng'},
+                    {type: 'starFullpng'}
                 ];
             default:
                 return [
-                    {type: 'starEmpty'},
-                    {type: 'starEmpty'},
-                    {type: 'starEmpty'}
+                    {type: 'starEmptypng'},
+                    {type: 'starEmptypng'},
+                    {type: 'starEmptypng'}
                 ];
         }
     }

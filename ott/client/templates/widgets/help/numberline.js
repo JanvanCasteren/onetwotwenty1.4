@@ -11,77 +11,17 @@ Template.numberline.helpers({
 
 Template.numberline.helpers({
 
-    getData: function (config) {
-        var lines = [],
-            markers = [],
-            pos,
-            step = config.step,
-            base, //base of the numberline (5 or 10)
-            halfBaseWidth //the distance between markers will be
-        //set dynamically
-            ;
-
-        const width = 700,
-            height = 200,
-            heightMarker = 50,
-            markerY1 = 80,
-            markerNumberY = 160,
-            heightBetweenMarker = 20,
-            betweenMarkerY1 = 90
-            ;
-
-        if (config === false) {
-            return {
-                lines: [],
-                markers: []
-            };
-        }
-
-        if (step > 5) {
-            base = 10;
-            pos = Math.floor(config.answer / 10);
-            pos = pos * 10;
-            halfBaseWidth = Math.round(700 / (step * 0.8));
-        } else {
-            base = 5;
-            pos = Math.floor(config.answer / 5);
-            pos = pos * 5;
-            halfBaseWidth = Math.round(700 / (step));
-        }
-
-        //define lines
-        //main line
-        lines.push({x1: 0, x2: width, y1: height / 2, y2: height / 2});
-        //markers
-        //TODO: zorg ervoor dat de laatste mark nooit meer dan 1
-        //tiental boven de 10x uitkomst ligt
-        for (var i = 0; i < 4; i++) {
-            let markerX = halfBaseWidth + i * 2 * halfBaseWidth;
-            let markerNumber = pos + (i - 1) * base;
-            lines.push({
-                x1: markerX, x2: markerX, y1: markerY1,
-                y2: markerY1 + heightMarker
-            });
-            markers.push({x: markerX, y: markerNumberY, number: markerNumber});
-        }
-
-        return {
-            lines,
-            markers
-        };
-
-    },
-
-    /**
+     /**
      * config has properties step and answer
      * (eg 7 and 35 in 5*7=35)
+     * and base. Base will be the position from which the
+     * help will be constructed
      * @param config
      * @returns {*}
      */
     getDataTableSum: function (config) {
         var markers = [],
-            upperArcs = [],
-            lowerArcs = [],
+            arcsData = [],
             arcs = [],
             lines = [],
             texts = []
@@ -92,55 +32,78 @@ Template.numberline.helpers({
             width = 700,
             stepWidth = width / 10,
             height = 200,
-            heightMarker = 50,
-            markerY1 = 80,
-            markerNumberY = 160,
-            arcAboveY = 40,
-            arcBelowY = 80,
+            heightMarker = 60,
+            markerY1 = 70,
+            markerNumberY = 165,
             arcTop = 60,
+            arcTextY = 45,
             getMultiplication = function (pos, step) {
-                return pos + ' ' + '\u00d7' + ' ' + step;
+                return pos + '\u00d7' + step;
             }
             ;
 
 
         if (config === false) {
             return {
-                upperArcs: [],
-                lowerArcs: [],
-                markers: []
+                lines: [],
+                arcs: [],
+                texts: []
             };
         }
 
         //add default markers (begin and end)
-        markers.concat([{pos: 0, text: 0}, {pos: 10 * step, text: 10 * step}]);
+        markers = markers.concat([{pos: 0, text: 0}, {pos: 10, text: 10 * step}]);
 
         switch (pos) {
             case 1:
                 markers.push({pos: 1, text: '?'});
-                upperArcs.push({start: 0, end: 1, textBelow: getMultiplication(1, step), textAbove: '+ ' + step});
+                arcsData.push({start: 0, end: 1, text: '+ ' + step});
                 break;
             case 2:
                 markers.push({pos: 1, text: step});
                 markers.push({pos: 2, text: '?'});
-                upperArcs.push({start: 0, end: 1, textBelow: getMultiplication(1, step)});
-                upperArcs.push({start: 1, end: 2, textBelow: getMultiplication(1, step), textAbove: '+ ' + 2 * step});
+                arcsData.push({start: 0, end: 1, text: getMultiplication(1, step), small: true});
+                arcsData.push({start: 1, end: 2, text: '+ ' + step, shift: true});
                 break;
             case 3:
+                markers.push({pos: 2, text: 2*step});
+                markers.push({pos: 3, text: '?'});
+                arcsData.push({start: 0, end: 2, text: getMultiplication(2, step), small: true});
+                arcsData.push({start: 2, end: 3, text: '+ ' + step, shift: true});
                 break;
             case 4:
+                markers.push({pos: 2, text: 2*step});
+                markers.push({pos: 4, text: '?'});
+                arcsData.push({start: 0, end: 2, text: getMultiplication(2, step), small: true});
+                arcsData.push({start: 2, end: 4, text: '+ (' + getMultiplication(2, step) + ')', small: true, shift: true});
                 break;
             case 5:
+                markers.push({pos: 5, text: '?'});
+                arcsData.push({start: 0, end: 5, text: getMultiplication(5, step), small: true});
+                arcsData.push({start: 5, end: 10, text: getMultiplication(5, step), small: true});
                 break;
             case 6:
+                markers.push({pos: 5, text: 5*step});
+                markers.push({pos: 6, text: '?'});
+                arcsData.push({start: 0, end: 5, text: getMultiplication(5, step), small: true});
+                arcsData.push({start: 5, end: 6, text: '+ ' + step, shift: true});
                 break;
             case 7:
+                markers.push({pos: 5, text: 5*step});
+                markers.push({pos: 7, text: '?'});
+                arcsData.push({start: 0, end: 5, text: getMultiplication(5, step), small: true});
+                arcsData.push({start: 5, end: 7, text: '+ (' + getMultiplication(2, step) + ')', small: true, shift: true});
                 break;
             case 8:
+                markers.push({pos: 8, text: '?'});
+                arcsData.push({start: 8, end: 10, text: '- (' + getMultiplication(2, step) + ')', small: true, shift: true});
                 break;
             case 9:
+                markers.push({pos: 9, text: '?'});
+                arcsData.push({start: 9, end: 10, text: '- ' + step, shift: true});
                 break;
             case 10:
+                arcsData.push({start: 0, end: 10, text: getMultiplication(10, step), small: true});
                 break;
         }
 
@@ -161,11 +124,15 @@ Template.numberline.helpers({
                 y1: markerY1,
                 y2: markerY1 + heightMarker
             });
+            let className = 'marker';
+            if (marker.text === '?') {
+                className = 'marker question';
+            }
             texts.push({
                     x: markerX,
                     y: markerNumberY,
                     text: marker.text,
-                    className: 'marker'
+                    className: className
                 }
             );
         });
@@ -180,12 +147,12 @@ Template.numberline.helpers({
         //xar: x-axis-rotation
         //laf: large-arc-flag
         //sf: sweep-flag
-        upperArcs.forEach((arc) => {
+        arcsData.forEach((arc) => {
             arcs.push({
-                mx: arc.start,
-                my: height/2,
+                mx: arc.start * stepWidth,
+                my: height / 2,
                 rx: (arc.end - arc.start) / 2 * stepWidth,
-                ry: arcTop - height/2,
+                ry: arcTop - height / 2,
                 xar: 0,
                 laf: 0,
                 sf: 1,
@@ -193,24 +160,20 @@ Template.numberline.helpers({
                 dy: 0
             });
             let markerX = (arc.start + (arc.end - arc.start) / 2) * stepWidth;
-            if (arc.hasOwnProperty('textAbove')) {
-                texts.push({
-                        x: markerX,
-                        y: arcAboveY,
-                        text: arc.textAbove,
-                        className: 'arc-above'
-                    }
-                );
+            let className = 'arc';
+            if (arc.hasOwnProperty('small') && arc.small === true) {
+                className += ' small';
             }
-            if (arc.hasOwnProperty('textBelow')) {
-                texts.push({
-                        x: markerX,
-                        y: arcBelowY,
-                        text: arc.textBelow,
-                        className: 'arc-below'
-                    }
-                );
+            if (arc.hasOwnProperty('shift') && arc.shift === true) {
+                className += ' shift';
             }
+            texts.push({
+                    x: markerX,
+                    y: arcTextY,
+                    text: arc.text,
+                    className: className
+                }
+            );
         });
 
         console.log({

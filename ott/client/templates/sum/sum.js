@@ -74,6 +74,10 @@ Template.sum.helpers({
         };
     },
 
+    showNumberline: function() {
+        return SumStore.getHelpState() !== HelpStates.NO_HELP;
+    },
+
 //returns the needed value for a button
 //in the answer pad.
 //default is 0-9, when child does not know the
@@ -87,9 +91,12 @@ Template.sum.helpers({
             sum = SumStore.getSum();
         }
 
-        //if the previous answer was not correct, we want to
-        //show the answers instead of the digits on the buttons
+        //if the user doesn't not manage to answer with the
+        //numberline show, we give additional help by displaying
+        //the answers
+        //TODO: simplify if statement
         if (sumState && sum && SumStore.isRetry()
+            && SumStore.getHelpState() === HelpStates.PHASE_TWO
             && sum.table !== false) {
             return sum.table * orderNr;
         } else {
@@ -105,6 +112,25 @@ Template.sum.helpers({
 
     isFalse: function () {
         return (SumStore.getState() === SumStates.ANSWERED_FALSE);
+    },
+
+    /**
+     * Return the correct left position of the false marker,
+     * based on the given answer
+     */
+    falseLeft: function() {
+        var sum = SumStore.getSum();
+
+        if(sum && sum.givenAnswer) {
+            console.log(sum.givenAnswer)
+            if(sum.givenAnswer < 10) {
+                return '6vh';
+            } else {
+                return '-8.5vh';
+            }
+        } else {
+            return '-6vh';
+        }
     }
 })
 ;

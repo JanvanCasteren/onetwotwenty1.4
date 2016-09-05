@@ -1,14 +1,15 @@
 .numberline {
     fill: white;
     stroke: white;
+    overflow:visible;
 }
 
 .numberline line {
-    stroke-width: 3px;
+    stroke-width: 4px;
 }
 
 .numberline path {
-    stroke-width: 2px;
+    stroke-width: 4px;
     fill: none;
 }
 
@@ -18,13 +19,25 @@
 }
 
 .numberline text.marker {
+    font-size: 30px;
+}
+
+.numberline text.arc {
+    font-size: 28px;
+}
+
+.numberline text.shift {
+    -ms-transform: translate(-7px, 0px); /* IE 9 */
+    -webkit-transform: translate(-7px, 0px); /* Safari */
+    transform: translate(-7px, 0px);
+}
+
+.numberline text.arc.small {
     font-size: 26px;
 }
 
-.numberline text.arc-above {
-    font-size: 20px;
-}
-
-.numberline text.arc-below {
-    font-size: 16px;
+.numberline text.question {
+    fill: #ffb063;
+    stroke: #ffb063;
+    font-size: 30px;
 }

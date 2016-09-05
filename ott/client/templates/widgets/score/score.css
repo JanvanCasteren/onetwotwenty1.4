@@ -11,3 +11,23 @@
 .score-star linearGradient stop.empty {
     stop-color: white;
 }
+
+.score-star-png {
+    margin-right:-0.8vh;
+    display:inline-block;
+    height: 4vh;
+    width: 4vh;
+    background-size: contain;
+}
+
+.star-half-png {
+    background-image: url('img/starHalf.png');
+}
+
+.star-full-png {
+    background-image: url('img/starFull.png');
+}
+
+.star-empty-png {
+    background-image: url('img/starEmpty.png');
+}
