@@ -3,6 +3,13 @@ Router.configure({
     loadingTemplate: 'loading'
 });
 
+Router.route('/login', {
+    name: 'login',
+    waitOn: function () {
+        return Meteor.subscribe('levels');
+    }
+});
+
 Router.route('/', {
     name: 'levels',
     waitOn: function () {

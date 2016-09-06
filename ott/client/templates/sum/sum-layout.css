@@ -1,0 +1,51 @@
+/*
+The sum page is build up from four containers
+their total height must equal 93vh
+.sum-container contains the css that is shared
+by the four containers
+*/
+.sum-container {
+    box-sizing: border-box;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.sum-help-container {
+    height: 21vh;
+    padding-top:3vh;
+}
+
+.sum-help {
+    height: 18vh;
+}
+
+.sum-sum-container {
+    height:12vh;
+
+}
+
+.sum-sum {
+
+}
+
+.sum-nav-container {
+    height:12vh;
+    padding-top: 1.5vh;
+}
+
+.sum-nav {
+    height: 9vh;
+}
+
+.sum-controls-container {
+    height:43vh;
+    padding-top: 2vh;
+}
+
+.sum-controls {
+    height:40vh;
+}
