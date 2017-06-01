@@ -1,4 +1,4 @@
-<template name="layout">
+<template name="layout_no_scroll">
     <div id="outer-container">
         <div id="header">
             <div id="header-left">
@@ -10,7 +10,7 @@
                 {{> loginButtons}}
             </div>
         </div>
-        <div id="inner-container">
+        <div id="inner-container" class="no-scroll">
             {{> yield}}
             {{> popup}}
         </div>

@@ -18,52 +18,5 @@ Meteor.startup(function () {
     //Sums.remove({});
     //Testsums.remove({});
 
-    //add levels
-    orderNumber = 0;
-    _.each(data, function (levelObject) {
-        orderNumber++;
-        if (!Levels.findOne({name: levelObject.name})) {
-            levelObj = new Level({
-                name: levelObject.name,
-                label: levelObject.label,
-                orderNumber: orderNumber,
-                animation: levelObject.animation,
-                type: levelObject.type
-            });
-            levelObj.save();
-        }
-    });
-
-    //add sums
-    sumbuilder = new Onetotwenty.Sumbuilder();
-    sumObjects = sumbuilder.buildSumObjects(data);
-    _.each(sumObjects, function (sumObject) {
-        if (sumObject.type === 'practice') {
-            sum = Sums.findOne({sum: sumObject.sum});
-            if (!sum) {
-                sum = new Sum(sumObject);
-                sum.save();
-            } else {
-                Sums.update(
-                    {_id: sum._id},
-                    {$addToSet: {levels: sumObject.levels[0]}}
-                )
-            }
-        }
-        if (sumObject.type === LevelTypes.TEST) {
-            sum = Testsums.findOne({sum: sumObject.sum});
-            if (!sum) {
-                sum = new Testsum(sumObject);
-                sum.save();
-            } else {
-                Testsums.update(
-                    {_id: sum._id},
-                    {$addToSet: {levels: sumObject.levels[0]}}
-                )
-            }
-        }
-    });
-
-
 })
 ;

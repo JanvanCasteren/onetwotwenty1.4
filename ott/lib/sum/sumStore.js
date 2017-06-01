@@ -75,7 +75,12 @@ sumStore = function () {
     };
 
     self.setSum = function (sum) {
-        sumVar.set(Sums.find({sum: sum}).fetch()[0]);
+        var level = levelVar.get();
+        if (level.type === 'test') {
+            sumVar.set(Testsums.find({sum: sum}).fetch()[0]);
+        } else {
+            sumVar.set(Sums.find({sum: sum}).fetch()[0]);
+        }
     };
 
     self.setState = function (state) {
@@ -276,10 +281,12 @@ sumStore = function () {
 
         if (lastGivenAnswerIsCorrect) {
             sumId = level.getNextSum();
-            console.log(level);
-            console.log(sumId);
             if (sumId !== null) {
-                sumVar.set(Sums.findOne(sumId));
+                if (level.type === 'test') {
+                    sumVar.set(Testsums.findOne(sumId));
+                } else {
+                    sumVar.set(Sums.findOne(sumId));
+                }
             } else {
                 //show popup and return to home
                 Session.set('popup', {

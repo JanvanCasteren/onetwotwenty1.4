@@ -1,0 +1,8 @@
+#login-buttons a, .accounts-dialog  a {
+    font-size: 3vh;
+    text-decoration: none;
+}
+
+#login-dropdown.list {
+    left:-30vw;
+}

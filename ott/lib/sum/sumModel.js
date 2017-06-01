@@ -21,6 +21,7 @@ Sum = function (doc, collection) {
     //initialise persistant private properties
     //(the fields of the MongoDB document)
     this._id = doc._id || null;
+    this._userId = doc.userId;
     this._orderNumber = doc.orderNumber;
     this._sum = doc.sum;
     this._levels = doc.levels;
@@ -314,6 +315,7 @@ Sum.prototype = _.extend(Sum.prototype, {
 
     getState: function () {
         return {
+            userId: this._userId,
             sum: this._sum,
             orderNumber: this._orderNumber,
             levels: this._levels,

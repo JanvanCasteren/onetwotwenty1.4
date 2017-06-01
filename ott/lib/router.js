@@ -21,7 +21,6 @@ Router.route('/level', {
     name: 'level',
     waitOn: function () {
         if (Session.get('currentLevelType') === 'test') {
-            console.log('im am here');
             return Meteor.subscribe('testsums', Session.get('currentLevel'));
         } else {
             return Meteor.subscribe('sums', Session.get('currentLevel'));
@@ -31,12 +30,20 @@ Router.route('/level', {
 //TODO: flowrouter met actions gebruiken
 Router.route('/sum', {
     name: 'sum',
+    layoutTemplate: 'layout_no_scroll',
     waitOn: function () {
         var level = Session.get('currentLevel');
-        return [
-            Meteor.subscribe('sums', level),
-            Meteor.subscribe('levels', level)
-        ]
+        if (Session.get('currentLevelType') === 'test') {
+            return [
+                Meteor.subscribe('testsums', level),
+                Meteor.subscribe('levels', level)
+            ];
+        } else {
+            return [
+                Meteor.subscribe('sums', level),
+                Meteor.subscribe('levels', level)
+            ];
+        }
     }
 });
 

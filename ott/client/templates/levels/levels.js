@@ -1,4 +1,6 @@
-Template.levels.onCreated(function () {
+//refresh the session vars for this page when we
+//switch user
+var refreshMyData = function() {
     Meteor.call('levels.getProgress', {}, (err, res) => {
         if (err) {
             console.error(err);
@@ -10,10 +12,20 @@ Template.levels.onCreated(function () {
         if (err) {
             console.error(err);
         } else {
-            console.log(res);
             Session.set('levelsPracticeNeeded', res);
         }
     });
+};
+
+Meteor.autorun(function () {
+    Meteor.userId(); //make this run when userId changes
+    //in both cases (login or logout) do
+    refreshMyData();
+});
+
+
+Template.levels.onCreated(function () {
+    refreshMyData();
 });
 
 Template.levels.helpers({
@@ -36,7 +48,6 @@ Template.levels.helpers({
         if(Session.get('levelsPracticeNeeded')) {
             practiceNeeded = Session.get('levelsPracticeNeeded')[levelName];
         }
-        console.log(practiceNeeded);
         if(practiceNeeded) {
             return 'level-button-active';
         } else {

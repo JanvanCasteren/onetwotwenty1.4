@@ -16,6 +16,7 @@ Level = function (doc) {
 
     //initialise persistant private properties
     //(the fields of the MongoDB document)
+    this._userId = doc.userId;
     this._name = doc.name;
     this._label = doc.label;
     this._orderNumber = doc.orderNumber;
@@ -97,7 +98,13 @@ Level.prototype = _.extend(Level.prototype, {
 
         this._queue = [];
         //TODO: we do not use the sublevels now
-        var sumCursor = Sums.find({levels: {$in: [this.name]}});
+        var sumCursor;
+        if(this.type === 'test') {
+            sumCursor = Testsums.find({levels: {$in: [this.name]}});
+        } else {
+            sumCursor = Sums.find({levels: {$in: [this.name]}});
+        }
+
         sumCursor.forEach(function (sum) {
             if (sum.shouldBeIncluded()) {
                 if (sum.lastWasCorrect()) {
@@ -112,7 +119,6 @@ Level.prototype = _.extend(Level.prototype, {
         lastFalse = _.shuffle(lastFalse);
         lastCorrect = _.shuffle(lastCorrect);
         this._queue = [].concat(lastFalse, lastCorrect);
-       console.log(this._queue);
     },
 
     /**
@@ -120,14 +126,22 @@ Level.prototype = _.extend(Level.prototype, {
      * of all the sums in this level
      */
     getScore: function () {
-        var sumCursor = Sums.find({
+        var sumCursor;
+
+        if(this.type === 'test') {
+            sumCursor = Testsums.find({
                 level: this.name
-            }),
-            levelScore = {
-                total: 0,
-                max: sumCursor.count() * 6
-            }
-            ;
+            });
+        } else {
+            sumCursor = Sums.find({
+                level: this.name
+            });
+        }
+
+        var levelScore = {
+            total: 0,
+            max: sumCursor.count() * 6
+        };
 
         sumCursor.forEach(function (sum) {
             levelScore.total = levelScore.total + sum.score;
@@ -139,6 +153,7 @@ Level.prototype = _.extend(Level.prototype, {
 
     getState: function () {
         return {
+            userId: this._userId,
             name: this._name,
             label: this._label,
             orderNumber: this._orderNumber,
